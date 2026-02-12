@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const configProvider = {
-   port: process.env.PORT || 3000,
+   port: process.env.PORT || 4000,
    redis: {
         host: process.env.REDIS_HOST,
         port: process.env.REDIS_PORT || 6379,
