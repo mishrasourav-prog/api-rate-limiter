@@ -6,6 +6,9 @@ export async function rateLimiterMiddleware(req , res){
     const allowed = await LimiterService(key);
 
     if(!allowed){
-       return reply.code(429).send({error: 'Too Many Requests'});
+       return reply
+       .header('X-RateLimit-Limit', process.env.RATE_LIMIT_CAPACITY)
+       .code(429)
+       .send({error: 'Too Many Requests'});
     }
 }
