@@ -1,5 +1,5 @@
 import { createClient } from "redis";
-import { RateLimiterRedis } from "rate-limiter-flexible";
+
 
 const limiterPlugin = createClient({
     url: process.env.REDIS_URL,
