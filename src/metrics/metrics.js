@@ -2,12 +2,14 @@ import client from "prom-client";
 
 export const totalRequestsCounter = new client.Counter({
     name: 'http_req_total',
-    help: 'Total number of HTTP requests'
+    help: 'Total number of HTTP requests',
+    labelNames: ['method', 'route', 'status']
 })
 
 export const blockedRequestsCounter = new client.Counter({
     name: 'http_req_blocked_total',
-    help: 'Total number of blocked HTTP requests'
+    help: 'Total number of blocked HTTP requests',      
+    labelNames: ['method', 'route', 'status']
 })
 
 export const register = client.register;

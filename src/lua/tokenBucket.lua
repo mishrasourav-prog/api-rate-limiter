@@ -30,7 +30,7 @@ if tokens >= 1 then
     allowed = 1
 end
 
-redis.call("HMSET", key,
+redis.call("HSET", key,
     "tokens", tokens,
     "timestamp", last_refill
 )

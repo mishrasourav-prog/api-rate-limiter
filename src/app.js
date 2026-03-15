@@ -9,7 +9,10 @@ const fastify = Fastify({
 })
 
 fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
+  return { 
+    success: true,
+    message: 'Welcome to the Rate Limiter API! Please refer to the documentation for usage details.'
+  }
 })
 
 fastify.addHook('onRequest', rateLimiterMiddleware);

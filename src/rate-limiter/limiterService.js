@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import redis from '../plugins/redis.plugin.js'
+import configProvider from './configProvider.js';
 
 const script = fs.readFileSync(path.join(process.cwd(), 'src/lua/tokenBucket.lua'), 'utf-8');
 
 export async function LimiterService(key){
-    const capacity = process.env.RATE_LIMIT_CAPACITY;
-    const refillRate = process.env.RATE_LIMIT_REFILL_RATE;
+    const capacity = configProvider.rateLimit.capacity;
+    const refillRate = configProvider.rateLimit.refillRate;
     const now = Math.floor(Date.now() / 1000);
 
     const result = await redis.eval(script, {

@@ -1,8 +1,6 @@
-import fastify from '../app.js';
-
-export default function healthRoutes(){
-    fastify.get('/health', async(req,res)=>{
-        return res.send(
+export default async function healthRoutes(fastify) {
+    fastify.get('/health', async(request,reply)=>{
+        return reply.send(
             {
                 status: 'ok',
                 statusCode: 200,

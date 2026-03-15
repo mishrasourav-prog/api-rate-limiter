@@ -1,8 +1,7 @@
 import fastify from 'fastify';
 import app from './app.js'
 import configProvider from './rate-limiter/configProvider.js';
-
-
+import redis from './plugins/redis.plugin.js';
 
 const PORT = configProvider.port;
 const HOST = configProvider.host;
@@ -14,6 +13,19 @@ const startServer = async () => {
         })
     }catch(err){
         console.error('Error starting server:', err);
+        process.exit(1);
     }
 }
 startServer();
+
+process.on('SIGINT', async () => {
+  await app.close();
+  await redis.quit();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  await app.close();
+  await redis.quit();
+  process.exit(0);
+});
