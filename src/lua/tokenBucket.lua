@@ -38,3 +38,8 @@ redis.call("HMSET", key,
 redis.call("EXPIRE", key, 60)
 
 return allowed
+
+
+
+
+
