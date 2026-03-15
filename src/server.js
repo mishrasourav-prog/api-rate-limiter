@@ -1,4 +1,4 @@
-import fastify from 'fastify';
+
 import app from './app.js'
 import configProvider from './rate-limiter/configProvider.js';
 import redis from './plugins/redis.plugin.js';
