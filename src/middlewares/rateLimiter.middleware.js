@@ -2,12 +2,13 @@ import { LimiterService } from "../rate-limiter/limiterService.js";
 import { totalRequestsCounter } from "../metrics/metrics.js";
 import { blockedRequestsCounter } from "../metrics/metrics.js";
 import configProvider from "../rate-limiter/configProvider.js";
+import generateKey from "../utils/keyGenerator.js";
 
 
 export async function rateLimiterMiddleware(request , reply){
     
     totalRequestsCounter.inc();
-    const key = `rate:${request.ip}`;
+    const key = generateKey(request);
 
     const allowed = await LimiterService(key);
 

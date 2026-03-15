@@ -2,6 +2,7 @@ import Fastify from 'fastify'
 import {rateLimiterMiddleware} from './middlewares/rateLimiter.middleware.js';
 import healthRoutes from './routes/health.routes.js';
 import metricsRoutes from './routes/metrics.routes.js';
+import checkRoutes from './routes/check.routes.js';
 
 
 const fastify = Fastify({
@@ -19,6 +20,7 @@ fastify.addHook('onRequest', rateLimiterMiddleware);
 
 fastify.register(healthRoutes);
 fastify.register(metricsRoutes);
+fastify.register(checkRoutes);
 
 
 export default fastify;
