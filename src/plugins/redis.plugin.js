@@ -3,8 +3,8 @@ import { createClient } from 'redis';
 const redis = createClient({
     url: process.env.REDIS_URL,
     socket: {
-        port: Number(process.env.REDIS_PORT),
-        host: process.env.REDIS_HOST,
+        port: Number(process.env.REDIS_PORT) || 6379,
+        host: process.env.REDIS_HOST || "127.0.0.1",
         reconnectStrategy: (retries) => Math.min(retries * 100, 3000),
         connectTimeout: 10000
     },

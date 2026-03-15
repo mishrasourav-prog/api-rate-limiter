@@ -4,6 +4,7 @@ dotenv.config()
 
 const configProvider = {
    port: process.env.PORT || 4000,
+   host: "0.0.0.0",
    redis: {
         host: process.env.REDIS_HOST,
         port: process.env.REDIS_PORT || 6379,
